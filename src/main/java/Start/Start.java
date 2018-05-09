@@ -1,7 +1,6 @@
 package Start;
 
-import Model.Admin;
-import Model.AdminDAO;
+import Model.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,40 +12,50 @@ public class Start
 {
     public static void main(String[] args) throws IOException {
        // AdminDAO.insert(new Admin("admin1","a@a.a","a","ac"));
+//        WriterDAO.insert(new Writer("w1","w@w.w","w", "ac"));
+//        WriterDAO.insert(new Writer("w2","w2@w.w","w", "ac"));
+//
+//        ArticleDAO.insert(new Article("first","the first article","eu","There was created the first article for testing purposes"));
+//        ArticleDAO.insert(new Article("second","the second article","el","There was created the second article for testing purposes"));
+//        ArticleDAO.insert(new Article("third","the third article","eu","There was created the third article for testing purposes"));
 
-        // server is listening on port 5056
-        ServerSocket ss = new ServerSocket(5056);
-        // running infinite loop for getting
-        // client request
-        while (true)
-        {
-            Socket s = null;
-
-            try
-            {
-                // socket object to receive incoming client requests
-                s = ss.accept();
-
-                System.out.println("A new client is connected : " + s);
-
-                // obtaining input and out streams
-
-                ObjectInputStream is = new ObjectInputStream(s.getInputStream());
-                ObjectOutputStream os = new ObjectOutputStream(s.getOutputStream());
-
-                System.out.println("Assigning new thread for this client");
-
-                // create a new thread object
-                Thread t = new ClientHandler(s,is, os);
-
-                // Invoking the start() method
-                t.start();
-
-            }
-            catch (Exception e){
-                s.close();
-                e.printStackTrace();
-            }
-        }
+        RelatedDAO.insert(new Related(1,2));
+        RelatedDAO.insert(new Related(1,3));
+        RelatedDAO.insert(new Related(2,3));
+        RelatedDAO.insert(new Related(3,1));
+//        // server is listening on port 5056
+//        ServerSocket ss = new ServerSocket(5056);
+//        // running infinite loop for getting
+//        // client request
+//        while (true)
+//        {
+//            Socket s = null;
+//
+//            try
+//            {
+//                // socket object to receive incoming client requests
+//                s = ss.accept();
+//
+//                System.out.println("A new client is connected : " + s);
+//
+//                // obtaining input and out streams
+//
+//                ObjectInputStream is = new ObjectInputStream(s.getInputStream());
+//                ObjectOutputStream os = new ObjectOutputStream(s.getOutputStream());
+//
+//                System.out.println("Assigning new thread for this client");
+//
+//                // create a new thread object
+//                Thread t = new ClientHandler(s,is, os);
+//
+//                // Invoking the start() method
+//                t.start();
+//
+//            }
+//            catch (Exception e){
+//                s.close();
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
