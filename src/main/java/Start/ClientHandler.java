@@ -37,10 +37,11 @@ class ClientHandler extends Thread
             try {
 
                 // Ask user what he wants
-                outputStream.writeObject(new Message(1,"Type Exit to terminate connection"));
-                // receive the answer from client
                 Gson gson = new Gson();
                 String json = gson.toJson(m1);
+                outputStream.writeObject(json);
+                // receive the answer from client
+
                 try {
                     received = (Message)inputStream.readObject();
                     received.addList(m1);
