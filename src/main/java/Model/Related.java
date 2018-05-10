@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "related")
+@NamedQuery(name="Related.findByIdFrom", query = "FROM Related as cas")
 public class Related
 {
     @Id
@@ -19,6 +20,7 @@ public class Related
 
     @Column(name = "id_to")
     private int idTo;
+    public Related(){}
 
     public Related(int idFrom, int idTo) {
         this.idFrom = idFrom;

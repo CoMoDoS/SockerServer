@@ -3,6 +3,8 @@ package Model;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleDAO
 {
@@ -60,5 +62,27 @@ public class ArticleDAO
         entityManager.close();
         entityManagerFactory.close();
     }
+    public static ArrayList<Article> selectAll()
+    {
+
+        entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+        entityManager = entityManagerFactory.createEntityManager();
+
+        ArrayList<Article> elem = new ArrayList<Article>();
+        List<Article> bilets = entityManager.createNamedQuery("Article.showAll").getResultList();
+
+        for ( Article c1 : bilets )
+        {
+            Article aux = new Article(c1.getTitle(),c1.getAbs(),c1.getAuthor(), c1.getBody());
+            aux.setId(c1.getId());
+            elem.add(aux);
+        }
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return elem;
+
+    }
+
 
 }

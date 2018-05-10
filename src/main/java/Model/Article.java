@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "article")
+@NamedQuery(name = "Article.showAll", query = " FROM Article as cas")
 public class Article
 {
     @Id
@@ -30,8 +31,11 @@ public class Article
     @Column(name = "body")
     private String body;
 
-   // private ArrayList<Article> relatedArticles = new ArrayList<Article>();
+//    @OneToMany
+//    private ArrayList<Article> relatedArticles = new ArrayList<>();
 
+    public Article() {
+    }
 
     public Article(String title, String abs, String author, String body) {
         this.title = title;
