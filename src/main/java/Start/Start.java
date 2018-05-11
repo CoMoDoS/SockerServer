@@ -34,6 +34,11 @@ public class Start
 //
 //        for ( Article a : list )
 //            System.out.println(a.toString());
+//        System.out.println(article1.toString());
+//        article1.setTitle("modificat");
+//        ArticleDAO.update(1,article1);
+//
+//        System.out.println(ArticleDAO.findById(1).toString());
 
 //        server is listening on port 5056
         ServerSocket ss = new ServerSocket(5056);

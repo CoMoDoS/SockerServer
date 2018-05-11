@@ -60,12 +60,7 @@ class ClientHandler extends Thread
                 try {
                     received = (Message)inputStream.readObject();
 //
-                    System.out.println(received.getA() + received.getB());
-                    for( Message i : received.getMessageList())
-                    {
-                        System.out.println(i.getA() + " " + i.getB());
-                    }
-//                    outputStream.writeObject(message);
+                    System.out.println(received.toString());
 
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -93,6 +88,27 @@ class ClientHandler extends Thread
                     case "Time" :
                         outputStream.writeObject(new Message("21","Second type"));
                         break;
+                    case "create-writer" :
+                        jsonArray = (JsonArray) jsonParser.parse(received.getA());
+                        aux = String.valueOf(jsonArray.get(0));
+                        String name1 = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(1));
+                        String email1 = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(2));
+                        String pass1 = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(3));
+                        String stat1 = aux.replace("\"","");
+                        Writer writer12= new Writer(name1,email1,pass1,stat1);
+                        try{
+                            WriterDAO.insert(writer12);
+                        }catch (Exception e)
+                        {
+                            outputStream.writeObject(new Message("error","error"));
+                        }
+
+                        outputStream.writeObject(new Message("ok","ok"));
+
+                        break;
                     case "get-related" :
                         list = RelatedDAO.selectAll(Integer.parseInt(received.getA()));
                         json = gson.toJson(list);
@@ -117,21 +133,126 @@ class ClientHandler extends Thread
                         String email = aux.replace("\"","");
                         String aux1 = String.valueOf(jsonArray.get(1));
                         String pass = aux1.replace("\"","");
-                        System.out.println(email + aux1);
-                        try {
-                            Writer writer1 = WriterDAO.findByEmail(email);
+                        System.out.println(email + pass);
 
-                            if (writer1.getParola().compareTo(pass) == 0)
-                                outputStream.writeObject(new Message("ok", "ok"));
-                            else
-                                outputStream.writeObject(new Message("no", "no"));
+                        Writer writer1 = new Writer();
+                        Admin admin1 = new Admin();
+
+                        int wr = 1;
+                        int ad = 1;
+                        try {
+                            writer1 = WriterDAO.findByEmail(email);
                         }catch (Exception e)
                         {
-                            outputStream.writeObject(new Message("error","error"));
+                           wr = 0;
+                            //outputStream.writeObject(new Message("error","errorWriter"));
+                        }
+                        try {
+                            admin1 = AdminDAO.findByEmail(email);
+                        }catch (Exception e)
+                        {
+                            ad = 0;
+//                            outputStream.writeObject(new Message("error","errorAdmin"));
                         }
 
+                        if (admin1.getName() != null &&  admin1.getParola().compareTo(pass) == 0)
+                            outputStream.writeObject(new Message("admin", "ok"));
+//                        else
+//                            outputStream.writeObject(new Message("no", "no"));
 
+                        if (writer1.getName() != null &&  writer1.getParola().compareTo(pass) == 0)
+                            outputStream.writeObject(new Message("writer", "ok"));
+//
+                        else
+                            outputStream.writeObject(new Message("no", "no"));
                         break;
+
+                    case "create-article" :
+                        jsonArray = (JsonArray) jsonParser.parse(received.getA());
+                        aux = String.valueOf(jsonArray.get(0));
+                        String titleArticle = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(1));
+                        String absArticle = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(2));
+                        String autorArticle = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(3));
+                        String bodyArticle = aux.replace("\"","");
+
+                        Article article12 = new Article(titleArticle,absArticle,autorArticle,bodyArticle);
+
+                        try
+                        {
+                            ArticleDAO.insert(article12);
+                        }catch (Exception e)
+                        {
+                            outputStream.writeObject(new Message("error", "error"));
+                        }
+
+                        outputStream.writeObject(new Message("ok","ok"));
+                        break;
+
+                    case "update-article" :
+
+                        jsonArray = (JsonArray) jsonParser.parse(received.getA());
+                        System.out.println("update-article :    " +  received.toString());
+
+                        aux = String.valueOf(jsonArray.get(0));
+                        String idArticle = aux.replace("\"","");
+                        int idArt = Integer.parseInt(idArticle);
+                        aux = String.valueOf(jsonArray.get(1));
+                        String titleArticle1 = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(2));
+                        String absArticle1 = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(3));
+                        String autorArticle1 = aux.replace("\"","");
+                        aux = String.valueOf(jsonArray.get(4));
+                        String bodyArticle1 = aux.replace("\"","");
+
+                        Article article21 = new Article(titleArticle1,absArticle1,autorArticle1,bodyArticle1);
+                        System.out.println(idArt +  "   update article : " + article21.toString());
+                        article21.setId(idArt);
+
+                        try{
+                            ArticleDAO.update(idArt,article21);
+                        }catch (Exception e)
+                        {
+                            outputStream.writeObject(new Message("error", "error"));
+                        }
+                        outputStream.writeObject(new Message("ok","ok"));
+                        break;
+
+                    case "delete-article" :
+                        int idDelete = Integer.parseInt(received.getA());
+                        try {
+                            ArticleDAO.delete(idDelete);
+                        }catch (Exception e)
+                        {
+                            outputStream.writeObject(new Message("error", "error"));
+                        }
+                        outputStream.writeObject(new Message("ok","ok"));
+                        break;
+
+                    case "add-related" :
+                        jsonArray = (JsonArray) jsonParser.parse(received.getA());
+
+                        aux = String.valueOf(jsonArray.get(0));
+                        String idArticle1 = aux.replace("\"","");
+                        int idArt1 = Integer.parseInt(idArticle1);
+
+                        aux = String.valueOf(jsonArray.get(1));
+                        String idArticle2 = aux.replace("\"","");
+                        int idArt2 = Integer.parseInt(idArticle2);
+
+                        try{
+                            RelatedDAO.insert(new Related(idArt1,idArt2));
+                        }catch (Exception e)
+                        {
+                            outputStream.writeObject(new Message("error", "error"));
+                        }
+                        outputStream.writeObject(new Message("ok","ok"));
+                        break;
+
+
                     case "get-writer" :
                         Writer writer = WriterDAO.findByEmail(received.getA());
                         json = gson.toJson(writer);
