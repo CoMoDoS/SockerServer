@@ -8,8 +8,8 @@ import java.util.List;
 
 public class ArticleDAO
 {
-    public static EntityManager entityManager;
-    public static EntityManagerFactory entityManagerFactory;
+    private static EntityManager entityManager;
+    private static EntityManagerFactory entityManagerFactory;
 
     public static void insert(Article article)
     {
@@ -68,7 +68,7 @@ public class ArticleDAO
         entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
         entityManager = entityManagerFactory.createEntityManager();
 
-        ArrayList<Article> elem = new ArrayList<Article>();
+        ArrayList<Article> elem = new ArrayList<>();
         List<Article> bilets = entityManager.createNamedQuery("Article.showAll").getResultList();
 
         for ( Article c1 : bilets )

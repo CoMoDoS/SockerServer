@@ -29,13 +29,6 @@ public class Admin {
 
     public Admin(){}
 
-    public Admin(String name, String email, String parola, String status) {
-        this.name = name;
-        this.email = email;
-        this.parola = parola;
-        this.status = status;
-    }
-
     public int getId() {
         return id;
     }

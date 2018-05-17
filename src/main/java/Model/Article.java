@@ -4,9 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 import javax.persistence.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "article")

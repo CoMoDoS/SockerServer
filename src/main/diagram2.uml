@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="10.5" y="109.0">Model.ArticleDAO</node>
+    <node x="47.75" y="188.0">Start.Message</node>
+    <node x="499.65" y="188.0">Model.AdminDAO</node>
+    <node x="233.75" y="109.0">Model.Related</node>
+    <node x="369.61635802469135" y="109.0">Model.Writer</node>
+    <node x="311.2" y="396.0">Start.Start</node>
+    <node x="357.7" y="188.0">Model.WriterDAO</node>
+    <node x="184.04969135802472" y="0.0">Model.Article</node>
+    <node x="286.7" y="317.0">Start.ClientHandler</node>
+    <node x="549.7262345679012" y="109.0">Model.Admin</node>
+    <node x="161.75000000000003" y="188.0">Model.RelatedDAO</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Start.ClientHandler" target="Model.AdminDAO">
+      <point x="32.26666666666665" y="-14.5" />
+      <point x="379.46666666666664" y="267.0" />
+      <point x="554.15" y="267.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.Writer">
+      <point x="16.133333333333326" y="-14.5" />
+      <point x="363.3333333333333" y="247.0" />
+      <point x="473.2" y="247.0" />
+      <point x="473.2" y="168.0" />
+      <point x="436.28302469135804" y="168.0" />
+      <point x="26.66666666666667" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.Article">
+      <point x="-56.46666666666664" y="-14.5" />
+      <point x="290.73333333333335" y="297.0" />
+      <point x="0.0" y="297.0" />
+      <point x="0.0" y="49.0" />
+      <point x="189.17469135802472" y="49.0" />
+      <point x="-35.875" y="14.5" />
+    </edge>
+    <edge source="Model.AdminDAO" target="Model.Admin">
+      <point x="0.0" y="-14.5" />
+      <point x="554.15" y="168.0" />
+      <point x="563.7262345679012" y="168.0" />
+      <point x="-28.0" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Start.Message">
+      <point x="-40.333333333333314" y="-14.5" />
+      <point x="306.8666666666667" y="277.0" />
+      <point x="71.25" y="277.0" />
+      <point x="-23.5" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.Related">
+      <point x="-16.133333333333326" y="-14.5" />
+      <point x="331.06666666666666" y="247.0" />
+      <point x="299.0" y="247.0" />
+      <point x="21.75" y="14.5" />
+    </edge>
+    <edge source="Model.WriterDAO" target="Model.Writer">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.ArticleDAO">
+      <point x="-48.39999999999998" y="-14.5" />
+      <point x="298.8" y="287.0" />
+      <point x="37.25" y="287.0" />
+      <point x="-26.75" y="14.5" />
+    </edge>
+    <edge source="Model.RelatedDAO" target="Model.ArticleDAO">
+      <point x="-42.00000000000003" y="-14.5" />
+      <point x="175.75" y="168.0" />
+      <point x="90.75" y="168.0" />
+      <point x="26.75" y="14.5" />
+    </edge>
+    <edge source="Start.Start" target="Start.ClientHandler">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Model.RelatedDAO" target="Model.Article">
+      <point x="13.999999999999972" y="-14.5" />
+      <point x="231.75" y="168.0" />
+      <point x="223.25" y="168.0" />
+      <point x="223.25" y="89.0" />
+      <point x="230.17469135802472" y="89.0" />
+      <point x="5.125" y="14.5" />
+    </edge>
+    <edge source="Model.ArticleDAO" target="Model.Article">
+      <point x="-26.75" y="-14.5" />
+      <point x="37.25" y="59.0" />
+      <point x="199.42469135802472" y="59.0" />
+      <point x="-25.625" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.RelatedDAO">
+      <point x="-24.19999999999999" y="-14.5" />
+      <point x="323.0" y="257.0" />
+      <point x="217.75000000000003" y="257.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.WriterDAO">
+      <point x="8.066666666666663" y="-14.5" />
+      <point x="355.26666666666665" y="237.0" />
+      <point x="410.2" y="237.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Start.ClientHandler" target="Model.Admin">
+      <point x="48.39999999999998" y="-14.5" />
+      <point x="395.59999999999997" y="287.0" />
+      <point x="636.4762345679012" y="287.0" />
+      <point x="636.4762345679012" y="158.0" />
+      <point x="619.7262345679012" y="158.0" />
+      <point x="28.0" y="14.5" />
+    </edge>
+    <edge source="Model.RelatedDAO" target="Model.Related">
+      <point x="41.99999999999997" y="-14.5" />
+      <point x="259.75" y="168.0" />
+      <point x="255.5" y="168.0" />
+      <point x="-21.75" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="481.0" y="4.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
